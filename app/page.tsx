@@ -14,8 +14,8 @@ import { MagicNavbar } from "@/components/magic-navbar"
 import { ConfettiOnHover } from "@/components/confetti-on-hover"
 import { SocialDock } from "@/components/social-dock"
 import { DraggableCard } from "@/components/draggable-card"
-import { LayoutGrid } from "@/components/ui/layout-grid"
 import { AboutUsCarousel } from "@/components/about-us-carousel"
+import { LatestShowsCarousel } from "@/components/latest-shows-carousel"
 import { Heart, Calendar, MapPin, Mail, Phone } from "lucide-react"
 import { colors } from "@/lib/config/colors"
 import { content } from "@/lib/config/content"
@@ -419,26 +419,7 @@ export default function Home() {
             duration={constants.animations.defaultDuration}
             direction="up"
           >
-            <LayoutGrid
-              cards={content.latestShows.items.map((show) => ({
-                id: show.id,
-                className: show.className,
-                thumbnail: show.thumbnail,
-                content: (
-                  <div className="space-y-3 text-neutral-900 dark:text-white">
-                    <p className="text-sm font-medium uppercase tracking-wide text-primary/80">
-                      {show.date}
-                    </p>
-                    <p className="text-3xl font-bold leading-tight sm:text-4xl">
-                      {show.title}
-                    </p>
-                    <p className="text-base text-muted-foreground">
-                      {show.description}
-                    </p>
-                  </div>
-                ),
-              }))}
-            />
+          <LatestShowsCarousel />
           </BlurFade>
         </div>
       </section>

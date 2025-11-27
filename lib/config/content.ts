@@ -20,7 +20,7 @@ export const content = {
       "Paquetes completos desde 150 Bs para baby showers, te piñata y cumpleaños inolvidables",
     highlightedWords: {
       payasos: {
-        word: "Payasito Chuchin",
+        word: "Payasitos Caluma Show",
         action: "underline" as const,
         color: "#B7FF00",
       },
@@ -178,7 +178,7 @@ export const content = {
       {
         id: 1,
         title: "Show en La Paz",
-        date: "Diciembre 2024",
+        date: "Noviembre 2025",
         description: "Un espectáculo increíble lleno de risas y diversión para toda la familia.",
         thumbnail: "/images/latest-shows/show-1.jpg",
         className: "md:col-span-1",
@@ -186,7 +186,7 @@ export const content = {
       {
         id: 2,
         title: "Show en El Alto",
-        date: "Noviembre 2024",
+        date: "Noviembre 2025",
         description: "Magia y entretenimiento que dejó a todos con ganas de más.",
         thumbnail: "/images/latest-shows/show-2.jpg",
         className: "md:col-span-1",
@@ -194,7 +194,7 @@ export const content = {
       {
         id: 3,
         title: "Show Familiar",
-        date: "Octubre 2024",
+        date: "Octubre 2025",
         description: "Risas garantizadas en esta presentación especial para toda la familia.",
         thumbnail: "/images/latest-shows/show-3.jpg",
         className: "md:col-span-1",
@@ -202,7 +202,7 @@ export const content = {
       {
         id: 4,
         title: "Show de Cumpleaños",
-        date: "Septiembre 2024",
+        date: "Septiembre 2025",
         description: "Celebración especial con nuestros payasos favoritos.",
         thumbnail: "/images/latest-shows/show-4.jpg",
         className: "md:col-span-1",
@@ -210,7 +210,7 @@ export const content = {
       {
         id: 5,
         title: "Show Nocturno",
-        date: "Agosto 2024",
+        date: "Agosto 2025",
         description: "Una noche mágica llena de diversión y espectáculo.",
         thumbnail: "/images/latest-shows/show-5.jpg",
         className: "md:col-span-1",
@@ -218,7 +218,7 @@ export const content = {
       {
         id: 6,
         title: "Show Especial",
-        date: "Julio 2024",
+        date: "Julio 2025",
         description: "Una presentación única que todos recordarán por mucho tiempo.",
         thumbnail: "/images/latest-shows/show-6.jpg",
         className: "md:col-span-1",
