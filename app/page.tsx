@@ -5,7 +5,7 @@ import { Marquee } from "@/components/ui/marquee"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { NumberTicker } from "@/components/ui/number-ticker"
-import { BentoGrid, BentoCard } from "@/components/ui/bento-grid"
+import { RainbowButton } from "@/components/ui/rainbow-button"
 import { SparklesText } from "@/components/ui/sparkles-text"
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card"
 import { LightRays } from "@/components/ui/light-rays"
@@ -16,20 +16,12 @@ import { SocialDock } from "@/components/social-dock"
 import { DraggableCard } from "@/components/draggable-card"
 import { AboutUsCarousel } from "@/components/about-us-carousel"
 import { LatestShowsCarousel } from "@/components/latest-shows-carousel"
-import { Heart, Calendar, MapPin, Mail, Phone } from "lucide-react"
+import { Heart, MapPin, Mail, Phone } from "lucide-react"
+import { WhatsAppIcon } from "@/components/social-dock"
 import { colors } from "@/lib/config/colors"
 import { content } from "@/lib/config/content"
 import { constants } from "@/lib/config/constants"
 import { cn } from "@/lib/utils"
-
-type FeatureItem = (typeof content.features.items)[number]
-type MarqueeFeature = FeatureItem & {
-  marqueeItems: { name: string; description: string }[]
-}
-
-const isMarqueeFeature = (feature: FeatureItem): feature is MarqueeFeature => {
-  return Array.isArray((feature as Partial<MarqueeFeature>).marqueeItems)
-}
 
 export default function Home() {
   return (
@@ -48,7 +40,7 @@ export default function Home() {
         />
         <div className="relative z-10 flex flex-col gap-12 lg:grid lg:grid-cols-2 lg:items-center">
           {/* Hero Content - Left Side */}
-          <div className="flex flex-col items-center lg:items-start px-4 text-center lg:text-left">
+          <div className="flex flex-col items-center px-4 text-center">
             <div className="w-full max-w-2xl space-y-8">
             <BlurFade 
               inView={true} 
@@ -58,7 +50,7 @@ export default function Home() {
               offset={constants.animations.defaultOffset}
             >
               <ConfettiOnHover className="w-full">
-                <SparklesText className="block w-full text-center lg:text-left text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] text-balance break-words mx-auto lg:mx-0">
+                <SparklesText className="block w-full text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] text-balance break-words mx-auto">
                   {content.hero.title}
                 </SparklesText>
               </ConfettiOnHover>
@@ -71,7 +63,7 @@ export default function Home() {
               direction="up"
               offset={constants.animations.defaultOffset}
             >
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-center lg:text-left text-balance">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-center text-balance">
                 El espectáculo de{" "}
                 <Highlighter action={content.hero.highlightedWords.payasos.action} color={content.hero.highlightedWords.payasos.color}>
                   {content.hero.highlightedWords.payasos.word}
@@ -95,14 +87,19 @@ export default function Home() {
               direction="up"
               offset={constants.animations.defaultOffset}
             >
-              {/*<Marquee pauseOnHover={constants.marquee.pauseOnHover} className={`[--duration:${constants.marquee.duration}] max-w-full`}>
+              <Marquee
+                pauseOnHover={constants.marquee.pauseOnHover}
+                className={`[--duration:${constants.marquee.duration}] max-w-full`}
+              >
                 {content.hero.marquee.map((item, idx) => (
-                  <div key={idx} className="mx-4 flex items-center gap-2 whitespace-nowrap text-muted-foreground">
+                  <div
+                    key={idx}
+                    className="mx-4 flex items-center gap-2 whitespace-nowrap text-muted-foreground"
+                  >
                     <span className="text-sm font-medium">{item}</span>
                   </div>
                 ))}
               </Marquee>
-              */}
             </BlurFade>
             
             <BlurFade 
@@ -112,14 +109,14 @@ export default function Home() {
               direction="up"
               offset={constants.animations.defaultOffset}
             >
-              <div className="flex justify-center lg:justify-start items-center pt-8 w-full">
+              <div className="flex justify-center items-center pt-8 w-full">
                 <Button asChild size="lg" className="text-lg px-8 w-full sm:w-auto">
                   <Link
                     href={content.hero.cta.primary.href}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Calendar className="mr-2 h-5 w-5" />
+                    <WhatsAppIcon className="mr-2 h-5 w-5" />
                     {content.hero.cta.primary.text}
                   </Link>
                 </Button>
@@ -223,60 +220,79 @@ export default function Home() {
             duration={constants.animations.defaultDuration}
             direction="up"
           >
-            <BentoGrid>
-              {content.features.items.map((feature) => {
-                // Crear backgrounds dinámicos según el tipo
-                let background: React.ReactNode
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:items-start gap-8">
+              {content.features.items.map((feature, index) => {
+                const imageSrc = feature.backgroundType === "image" && "image" in feature && feature.image 
+                  ? feature.image 
+                  : null
+                const isLastPackage = index === 4 // Show Completo (quinto paquete después de reordenar)
+                const isPromo = "isPromo" in feature && feature.isPromo === true
 
-                if (isMarqueeFeature(feature)) {
-                  background = (
-                    <Marquee
-                      pauseOnHover
-                      className="absolute top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]"
+                const cardContent = (
+                  <>
+                    {isPromo && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="inline-flex items-center rounded-full bg-gradient-to-r from-red-500 to-pink-500 px-3 py-1 text-xs font-bold text-white shadow-lg animate-pulse">
+                          🔥 PROMO
+                        </span>
+                      </div>
+                    )}
+                    {imageSrc && (
+                      <div className="relative w-full overflow-hidden bg-muted/30">
+                        <div className="relative w-full">
+                          <img
+                            src={imageSrc}
+                            alt={feature.name}
+                            className="h-auto w-full object-contain p-6"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex flex-col gap-4 p-6 flex-shrink-0">
+                      <RainbowButton asChild size="lg" className="w-full">
+                        <Link href={feature.href}>
+                          <WhatsAppIcon className="mr-2 h-5 w-5" />
+                          {feature.cta}
+                        </Link>
+                      </RainbowButton>
+                    </div>
+                  </>
+                )
+
+                if (isPromo) {
+                  return (
+                    <NeonGradientCard
+                      key={feature.name}
+                      className={cn(
+                        "group relative flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.02]",
+                        isLastPackage && "lg:row-span-2 lg:h-full"
+                      )}
+                      neonColors={{
+                        firstColor: colors.neon.firstColor,
+                        secondColor: colors.neon.secondColor,
+                      }}
+                      borderSize={constants.neonCard.borderSize}
+                      borderRadius={constants.neonCard.borderRadius.stats}
                     >
-                      {feature.marqueeItems.map((item, itemIdx) => (
-                        <figure
-                          key={itemIdx}
-                          className={cn(
-                            "relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4",
-                            "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-                            "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
-                            "transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none"
-                          )}
-                        >
-                          <div className="flex flex-row items-center gap-2">
-                            <div className="flex flex-col">
-                              <figcaption className="text-sm font-medium dark:text-white">
-                                {item.name}
-                              </figcaption>
-                            </div>
-                          </div>
-                          <blockquote className="mt-2 text-xs">{item.description}</blockquote>
-                        </figure>
-                      ))}
-                    </Marquee>
-                  )
-                } else {
-                  // Background con gradiente simple
-                  background = (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-xl`} />
+                      {cardContent}
+                    </NeonGradientCard>
                   )
                 }
 
                 return (
-                  <BentoCard
+                  <div
                     key={feature.name}
-                    name={feature.name}
-                    description={feature.description}
-                    Icon={feature.icon}
-                    className={feature.className}
-                    background={background}
-                    cta={feature.cta}
-                    href={feature.href}
-                  />
+                    className={cn(
+                      "group relative flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card dark:bg-card/95 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02]",
+                      isLastPackage && "lg:row-span-2 lg:h-full"
+                    )}
+                  >
+                    {cardContent}
+                  </div>
                 )
               })}
-            </BentoGrid>
+            </div>
           </BlurFade>
         </div>
       </section>
@@ -419,7 +435,66 @@ export default function Home() {
             duration={constants.animations.defaultDuration}
             direction="up"
           >
-          <LatestShowsCarousel />
+            <LatestShowsCarousel />
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Videos Section */}
+      <section id="videos" className="relative py-20 px-4 bg-muted/20">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <BlurFade inView delay={constants.animations.delays.immediate}>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                {content.videos.title}
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                {content.videos.subtitle}
+              </p>
+            </div>
+          </BlurFade>
+
+          <BlurFade
+            inView
+            delay={constants.animations.delays.medium}
+            className="grid gap-8 lg:grid-cols-3"
+          >
+            {content.videos.items.map((video) => (
+              <article
+                key={video.id}
+                className="group relative flex flex-col space-y-4 rounded-3xl border border-border/40 bg-background shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
+              >
+                <div
+                  className={cn(
+                    "relative w-full overflow-hidden",
+                    video.orientation === "vertical"
+                      ? "rounded-3xl p-3"
+                      : "rounded-t-3xl"
+                  )}
+                >
+                  <video
+                    className={cn(
+                      "w-full rounded-2xl object-cover",
+                      video.orientation === "vertical"
+                        ? "aspect-[9/16]"
+                        : "aspect-video rounded-t-3xl"
+                    )}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={video.thumbnail}
+                  >
+                    <source src={video.videoUrl} />
+                    Tu navegador no soporta video embebido.
+                  </video>
+                </div>
+                <div className="space-y-2 px-6 pb-6 text-center">
+                  
+                  <h3 className="text-2xl font-bold">{video.title}</h3>
+                  <p className="text-sm text-muted-foreground">{video.description}</p>
+                </div>
+              </article>
+            ))}
           </BlurFade>
         </div>
       </section>
@@ -478,7 +553,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Calendar className="mr-2 h-5 w-5" />
+                      <WhatsAppIcon className="mr-2 h-5 w-5" />
                       {content.cta.button.text}
                     </Link>
                   </Button>

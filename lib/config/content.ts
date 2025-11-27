@@ -5,10 +5,10 @@
 
 import { Crown, PartyPopper, Sparkles, Star } from "lucide-react"
 
-const WHATSAPP_NUMBER = "59169709494"
-const DEFAULT_WHATSAPP_MESSAGE =
+export const WHATSAPP_NUMBER = "59169709494"
+export const DEFAULT_WHATSAPP_MESSAGE =
   "Hola, vi la página web de Caluma Show y quiero reservar mi evento."
-const whatsappLink = (message = DEFAULT_WHATSAPP_MESSAGE) =>
+export const whatsappLink = (message = DEFAULT_WHATSAPP_MESSAGE) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 const INSTAGRAM_URL = "https://www.instagram.com/calumashow"
 
@@ -78,35 +78,41 @@ export const content = {
     },
     items: [
       {
+        name: "Show Despedida Escuela · 250 Bs",
+        description:
+          "Promoción especial: 1 payasito, parlante, música ambiente, juegos didácticos, cañón de burbujas, 10 globos flexia de regalo, juego del calamar y Wally gigante.",
+        icon: PartyPopper,
+        className: "col-span-3 lg:col-span-2",
+        backgroundType: "image" as const,
+        image: "/images/packages/package-5.png",
+        gradient: "from-red-500/20 to-pink-500/20",
+        cta: "Ver detalles",
+        href: "/paquetes/despedida-escuela",
+        isPromo: true,
+      },
+      /*{
         name: "Paquete Hora Feliz · 150 Bs",
         description:
           "1 payasito, parlante con micrófono, juegos didácticos, rayo láser, luces LED y dinámicas tipo sumo, juegos del calamar y Wally gigante.",
         icon: Crown,
         className: "col-span-3 lg:col-span-1",
-        backgroundType: "marquee" as const,
-        marqueeItems: [
-          { name: "Payasito", description: "Animación completa" },
-          { name: "Juegos", description: "Sumo, Wally, Calamar" },
-          { name: "Luces", description: "LED + rayo láser" },
-        ],
+        backgroundType: "image" as const,
+        image: "/images/packages/package-1.png",
         gradient: "from-blue-500/20 to-purple-500/20",
-        cta: "Reservar 150 Bs",
-        href: whatsappLink(
-          "Hola, quiero reservar el Paquete Hora Feliz de 150 Bs desde la página web de Caluma Show."
-        ),
-      },
+        cta: "Ver detalles",
+        href: "/paquetes/hora-feliz",
+      },*/
       {
         name: "Paquete Premium Hora · 200 Bs",
         description:
           "Incluye todo el básico más música ambiente, cañón de burbujas, dinosaurio gigante y globoflexia para todos.",
         icon: PartyPopper,
         className: "col-span-3 lg:col-span-2",
-        backgroundType: "gradient" as const,
+        backgroundType: "image" as const,
+        image: "/images/packages/package-2.png",
         gradient: "from-yellow-500/20 to-orange-500/20",
-        cta: "Reservar 200 Bs",
-        href: whatsappLink(
-          "Hola, quiero reservar el Paquete Premium Hora de 200 Bs desde la página web de Caluma Show."
-        ),
+        cta: "Ver detalles",
+        href: "/paquetes/hora-premium",
       },
       {
         name: "Show Mediano · 4 hrs · 700 Bs",
@@ -114,12 +120,11 @@ export const content = {
           "2 payasos o pintacaritas, entrada de mariachi, máquina de humo, robot LED o máscara LED, dinosaurios inflables, cuy y mini hora loca.",
         icon: Sparkles,
         className: "col-span-3 lg:col-span-2",
-        backgroundType: "gradient" as const,
+        backgroundType: "image" as const,
+        image: "/images/packages/package-3.png",
         gradient: "from-pink-500/20 to-red-500/20",
-        cta: "Reservar 700 Bs",
-        href: whatsappLink(
-          "Hola, quiero reservar el Show Mediano de 700 Bs (4 horas) desde la página web de Caluma Show."
-        ),
+        cta: "Ver detalles",
+        href: "/paquetes/show-mediano",
       },
       {
         name: "Show Completo · 1300 Bs",
@@ -127,12 +132,11 @@ export const content = {
           "Desde la primera entrada hasta la última canastita: payasos, pintacaritas, amplificación, globoflexia, show de títeres, magia, robots, dinosaurios, mariachi y mucho más.",
         icon: Star,
         className: "col-span-3 lg:col-span-1",
-        backgroundType: "gradient" as const,
+        backgroundType: "image" as const,
+        image: "/images/packages/package-4.png",
         gradient: "from-green-500/20 to-teal-500/20",
-        cta: "Reservar 1300 Bs",
-        href: whatsappLink(
-          "Hola, quiero reservar el Show Completo de 1300 Bs desde la página web de Caluma Show."
-        ),
+        cta: "Ver detalles",
+        href: "/paquetes/show-completo",
       },
     ],
   },
@@ -222,6 +226,37 @@ export const content = {
         description: "Una presentación única que todos recordarán por mucho tiempo.",
         thumbnail: "/images/latest-shows/show-6.jpg",
         className: "md:col-span-1",
+      },
+    ],
+  },
+
+  videos: {
+    title: "Videos Destacados",
+    subtitle: "Verticales TikTok e historias horizontales para revivir la magia",
+    items: [
+      {
+        id: "vertical-1",
+        title: "TikTok - Hora Feliz",
+        description: "Payasito Chuchin animando un cumpleaños con globoflexia",
+        orientation: "vertical",
+        videoUrl: "/videos/shows/video-1.mp4",
+        thumbnail: "/images/latest-shows/show-1.jpg",
+      },
+      {
+        id: "horizontal-1",
+        title: "YouTube - Show Completo",
+        description: "Resumen con robots LED, cuy y hora loca",
+        orientation: "vertical",
+        videoUrl: "/videos/shows/video-2.mp4",
+        thumbnail: "/images/latest-shows/show-5.jpg",
+      },
+      {
+        id: "vertical-2",
+        title: "TikTok - Dinosaurio",
+        description: "Entrada del dinosaurio inflable y burbujas",
+        orientation: "vertical",
+        videoUrl: "/videos/shows/video-3.mp4",
+        thumbnail: "/images/latest-shows/show-3.jpg",
       },
     ],
   },

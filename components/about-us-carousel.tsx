@@ -3,7 +3,8 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Instagram, MessageCircle, Music2 } from "lucide-react"
+import { Instagram, Music2 } from "lucide-react"
+import { WhatsAppIcon } from "@/components/social-dock"
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel"
 import { Button } from "@/components/ui/button"
 import { content } from "@/lib/config/content"
@@ -13,7 +14,7 @@ const globalSocialLinks = [
     key: "whatsapp",
     label: "WhatsApp",
     href: content.socialMedia.whatsapp.url,
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
   },
   {
     key: "instagram",
@@ -29,7 +30,7 @@ export function AboutUsCarousel() {
       member.social?.whatsapp && {
         label: "WhatsApp",
         href: member.social.whatsapp,
-        icon: MessageCircle,
+        icon: WhatsAppIcon,
       },
       member.social?.instagram && {
         label: "Instagram",

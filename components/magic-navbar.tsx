@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { Menu, X } from "lucide-react"
+import { WhatsAppIcon } from "@/components/social-dock"
 
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -11,13 +12,46 @@ import { cn } from "@/lib/utils"
 
 const NAV_ITEMS = [
   { label: "Inicio", href: "#home" },
-  { label: "Estadísticas", href: "#stats" },
-  { label: "Características", href: "#features" },
+  { label: "Experiencia", href: "#stats" },
+  { label: "Paquetes", href: "#features" },
   { label: "Testimonios", href: "#testimonials" },
-  { label: "Equipo", href: "#about" },
+  { label: "Payasitos", href: "#about" },
   { label: "Shows", href: "#shows" },
   { label: "Contacto", href: "#contact" },
 ]
+
+type NavItemsProps = {
+  className?: string
+  activeHref: string
+  scrollToSection: (href: string) => void
+}
+
+const NavItems = ({ className = "", activeHref, scrollToSection }: NavItemsProps) => (
+  <div className={cn("flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4", className)}>
+    {NAV_ITEMS.map((item) => {
+      const isActive = activeHref === item.href
+      return (
+        <button
+          key={item.href}
+          onClick={() => scrollToSection(item.href)}
+          className={cn(
+            "relative rounded-full px-4 py-2 text-base font-medium transition-colors",
+            isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          {isActive && (
+            <motion.span
+              layoutId="nav-pill"
+              className="absolute inset-0 rounded-full bg-primary/10"
+              transition={{ type: "spring", stiffness: 350, damping: 30 }}
+            />
+          )}
+          <span className="relative">{item.label}</span>
+        </button>
+      )
+    })}
+  </div>
+)
 
 export function MagicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,9 +73,15 @@ export function MagicNavbar() {
   }, [])
 
   useEffect(() => {
-    handleScrollSpy()
+    // Defer initial call to avoid synchronous setState in effect
+    const timeoutId = setTimeout(() => {
+      handleScrollSpy()
+    }, 0)
     window.addEventListener("scroll", handleScrollSpy, { passive: true })
-    return () => window.removeEventListener("scroll", handleScrollSpy)
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener("scroll", handleScrollSpy)
+    }
   }, [handleScrollSpy])
 
   useEffect(() => {
@@ -63,33 +103,6 @@ export function MagicNavbar() {
     setIsMenuOpen(false)
   }, [])
 
-  const NavItems = ({ className = "" }: { className?: string }) => (
-    <div className={cn("flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4", className)}>
-      {NAV_ITEMS.map((item) => {
-        const isActive = activeHref === item.href
-        return (
-          <button
-            key={item.href}
-            onClick={() => scrollToSection(item.href)}
-            className={cn(
-              "relative rounded-full px-4 py-2 text-base font-medium transition-colors",
-              isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            {isActive && (
-              <motion.span
-                layoutId="nav-pill"
-                className="absolute inset-0 rounded-full bg-primary/10"
-                transition={{ type: "spring", stiffness: 350, damping: 30 }}
-              />
-            )}
-            <span className="relative">{item.label}</span>
-          </button>
-        )
-      })}
-    </div>
-  )
-
   return (
     <header className="fixed inset-x-0 top-0 z-40">
       <div className="mx-auto max-w-7xl px-4 pt-4">
@@ -108,7 +121,7 @@ export function MagicNavbar() {
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">
-              <NavItems />
+              <NavItems activeHref={activeHref} scrollToSection={scrollToSection} />
             </div>
 
             <div className="flex items-center gap-3">
@@ -121,6 +134,7 @@ export function MagicNavbar() {
                   scrollToSection("#contact")
                 }}
               >
+                <WhatsAppIcon className="mr-2 h-4 w-4" />
                 Reservar
               </Button>
               <button
@@ -141,7 +155,11 @@ export function MagicNavbar() {
                 exit={{ height: 0, opacity: 0 }}
                 className="lg:hidden overflow-hidden px-4 pb-4"
               >
-                <NavItems className="rounded-2xl border border-border/60 bg-background/70 p-4 shadow-inner" />
+                <NavItems 
+                  className="rounded-2xl border border-border/60 bg-background/70 p-4 shadow-inner" 
+                  activeHref={activeHref} 
+                  scrollToSection={scrollToSection} 
+                />
                 <Button
                   size="lg"
                   className="mt-4 w-full"
@@ -150,7 +168,8 @@ export function MagicNavbar() {
                     scrollToSection("#contact")
                   }}
                 >
-                  Reservar Entradas
+                  <WhatsAppIcon className="mr-2 h-5 w-5" />
+                  Reservar por WhatsApp
                 </Button>
               </motion.div>
             )}

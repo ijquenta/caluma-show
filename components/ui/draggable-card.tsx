@@ -33,18 +33,29 @@ export const DraggableCardBody = ({
   const velocityX = useVelocity(mouseX);
   const velocityY = useVelocity(mouseY);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const springConfig = {
-    stiffness: 100,
-    damping: 20,
-    mass: 0.5,
+    stiffness: isMobile ? 150 : 100,
+    damping: isMobile ? 25 : 20,
+    mass: isMobile ? 0.3 : 0.5,
   };
 
   const rotateX = useSpring(
-    useTransform(mouseY, [-300, 300], [25, -25]),
+    useTransform(mouseY, [-300, 300], isMobile ? [10, -10] : [25, -25]),
     springConfig,
   );
   const rotateY = useSpring(
-    useTransform(mouseX, [-300, 300], [-25, 25]),
+    useTransform(mouseX, [-300, 300], isMobile ? [-10, 10] : [-25, 25]),
     springConfig,
   );
 
@@ -109,61 +120,73 @@ export const DraggableCardBody = ({
       ref={cardRef}
       drag
       dragConstraints={constraints}
+      dragElastic={isMobile ? 0.1 : 0.2}
+      dragMomentum={!isMobile}
       onDragStart={() => {
-        document.body.style.cursor = "grabbing";
+        if (!isMobile) {
+          document.body.style.cursor = "grabbing";
+        }
       }}
       onDragEnd={(event, info) => {
-        document.body.style.cursor = "default";
+        if (!isMobile) {
+          document.body.style.cursor = "default";
+        }
 
         controls.start({
           rotateX: 0,
           rotateY: 0,
           transition: {
             type: "spring",
-            ...springConfig,
+            stiffness: isMobile ? 200 : springConfig.stiffness,
+            damping: isMobile ? 30 : springConfig.damping,
+            mass: isMobile ? 0.2 : springConfig.mass,
           },
         });
-        const currentVelocityX = velocityX.get();
-        const currentVelocityY = velocityY.get();
 
-        const velocityMagnitude = Math.sqrt(
-          currentVelocityX * currentVelocityX +
-            currentVelocityY * currentVelocityY,
-        );
-        const bounce = Math.min(0.8, velocityMagnitude / 1000);
+        if (!isMobile) {
+          const currentVelocityX = velocityX.get();
+          const currentVelocityY = velocityY.get();
 
-        animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
+          const velocityMagnitude = Math.sqrt(
+            currentVelocityX * currentVelocityX +
+              currentVelocityY * currentVelocityY,
+          );
+          const bounce = Math.min(0.8, velocityMagnitude / 1000);
 
-        animate(info.point.y, info.point.y + currentVelocityY * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
+          animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
+            duration: 0.8,
+            ease: [0.2, 0, 0, 1],
+            bounce,
+            type: "spring",
+            stiffness: 50,
+            damping: 15,
+            mass: 0.8,
+          });
+
+          animate(info.point.y, info.point.y + currentVelocityY * 0.3, {
+            duration: 0.8,
+            ease: [0.2, 0, 0, 1],
+            bounce,
+            type: "spring",
+            stiffness: 50,
+            damping: 15,
+            mass: 0.8,
+          });
+        }
       }}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
         opacity,
         willChange: "transform",
       }}
       animate={controls}
-      whileHover={{ scale: 1.02 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      whileHover={isMobile ? {} : { scale: 1.02 }}
+      onMouseMove={isMobile ? undefined : handleMouseMove}
+      onMouseLeave={isMobile ? undefined : handleMouseLeave}
       className={cn(
         "relative min-h-[18rem] w-56 sm:min-h-[22rem] sm:w-64 md:min-h-96 md:w-80 overflow-hidden rounded-3xl bg-neutral-100 p-4 sm:p-5 md:p-6 shadow-2xl transform-3d touch-none dark:bg-neutral-900",
+        isMobile && "transform-gpu",
         className,
       )}
     >

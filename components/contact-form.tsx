@@ -1,9 +1,7 @@
 "use client"
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { Mail, Send, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -26,30 +24,18 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-// Esquema de validación
-const contactFormSchema = z.object({
-  name: z.string().min(2, {
-    message: "El nombre debe tener al menos 2 caracteres.",
-  }),
-  email: z.string().email({
-    message: "Por favor ingresa un email válido.",
-  }),
-  subject: z.string().min(5, {
-    message: "El asunto debe tener al menos 5 caracteres.",
-  }),
-  message: z.string().min(10, {
-    message: "El mensaje debe tener al menos 10 caracteres.",
-  }),
-})
-
-type ContactFormValues = z.infer<typeof contactFormSchema>
+type ContactFormValues = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -99,6 +85,13 @@ export function ContactForm() {
             <FormField
               control={form.control}
               name="name"
+              rules={{
+                required: "El nombre es obligatorio.",
+                minLength: {
+                  value: 2,
+                  message: "El nombre debe tener al menos 2 caracteres.",
+                },
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nombre</FormLabel>
@@ -113,6 +106,13 @@ export function ContactForm() {
             <FormField
               control={form.control}
               name="email"
+              rules={{
+                required: "El email es obligatorio.",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Por favor ingresa un email válido.",
+                },
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
@@ -134,11 +134,21 @@ export function ContactForm() {
             <FormField
               control={form.control}
               name="subject"
+              rules={{
+                required: "El asunto es obligatorio.",
+                minLength: {
+                  value: 5,
+                  message: "El asunto debe tener al menos 5 caracteres.",
+                },
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Asunto</FormLabel>
                   <FormControl>
-                    <Input placeholder="¿Sobre qué quieres contactarnos?" {...field} />
+                    <Input
+                      placeholder="¿Sobre qué quieres contactarnos?"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -148,6 +158,13 @@ export function ContactForm() {
             <FormField
               control={form.control}
               name="message"
+              rules={{
+                required: "El mensaje es obligatorio.",
+                minLength: {
+                  value: 10,
+                  message: "El mensaje debe tener al menos 10 caracteres.",
+                },
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Mensaje</FormLabel>

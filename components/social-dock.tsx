@@ -4,10 +4,10 @@ import { Dock, DockIcon } from "@/components/ui/dock"
 import { content } from "@/lib/config/content"
 
 // Iconos SVG con colores característicos de cada red social
-const WhatsAppIcon = () => (
+export const WhatsAppIcon = ({ className = "w-full h-full" }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
-    className="w-full h-full"
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
   >
     <path 
@@ -113,7 +113,7 @@ export function SocialDock() {
               }
             }}
           >
-            <social.icon />
+            {social.name === "WhatsApp" ? <WhatsAppIcon /> : <social.icon />}
             <span className="sr-only">{social.label}</span>
           </DockIcon>
         ))}
