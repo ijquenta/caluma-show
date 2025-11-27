@@ -90,15 +90,15 @@ export function LatestShowsCarousel() {
           onClick={() => setSelectedShow(null)}
         >
           <div
-            className="relative w-full max-w-6xl"
+            className="relative w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-[85vw] xl:max-w-[80vw] mx-auto"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="relative mx-auto h-[80vh] w-full overflow-hidden rounded-2xl bg-black sm:h-[90vh] sm:w-[90vw] sm:rounded-3xl">
+            <div className="relative mx-auto h-[80vh] w-full overflow-hidden rounded-2xl bg-black sm:h-[85vh] sm:rounded-3xl">
               <Image
                 src={selectedShow.thumbnail}
                 alt={selectedShow.title}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px"
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 85vw"
                 className="object-contain"
                 priority
               />
@@ -106,10 +106,10 @@ export function LatestShowsCarousel() {
             <Button
               size="icon"
               variant="secondary"
-              className="absolute -right-3 -top-3 h-10 w-10 rounded-full"
+              className="absolute -right-3 -top-3 sm:-right-4 sm:-top-4 h-10 w-10 sm:h-12 sm:w-12 rounded-full z-10"
               onClick={() => setSelectedShow(null)}
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
               <span className="sr-only">Cerrar vista ampliada</span>
             </Button>
           </div>
