@@ -22,6 +22,15 @@ import { content } from "@/lib/config/content"
 import { constants } from "@/lib/config/constants"
 import { cn } from "@/lib/utils"
 
+type FeatureItem = (typeof content.features.items)[number]
+type MarqueeFeature = FeatureItem & {
+  marqueeItems: { name: string; description: string }[]
+}
+
+const isMarqueeFeature = (feature: FeatureItem): feature is MarqueeFeature => {
+  return Array.isArray((feature as Partial<MarqueeFeature>).marqueeItems)
+}
+
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full">
@@ -102,17 +111,17 @@ export default function Home() {
               direction="up"
               offset={constants.animations.defaultOffset}
             >
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-8 w-full">
-                <Button size="lg" className="text-lg px-8 w-full sm:w-auto">
-                  <Calendar className="mr-2 h-5 w-5" />
-                  {content.hero.cta.primary.text}
+              <div className="flex justify-center lg:justify-start items-center pt-8 w-full">
+                <Button asChild size="lg" className="text-lg px-8 w-full sm:w-auto">
+                  <Link
+                    href={content.hero.cta.primary.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Calendar className="mr-2 h-5 w-5" />
+                    {content.hero.cta.primary.text}
+                  </Link>
                 </Button>
-                <Link href={content.hero.cta.secondary.href}>
-                  <Button size="lg" variant="outline" className="text-lg px-8 w-full sm:w-auto">
-                    <Mail className="mr-2 h-5 w-5" />
-                    {content.hero.cta.secondary.text}
-                  </Button>
-                </Link>
               </div>
             </BlurFade>
             </div>
@@ -217,9 +226,8 @@ export default function Home() {
               {content.features.items.map((feature) => {
                 // Crear backgrounds dinámicos según el tipo
                 let background: React.ReactNode
-                
-                if (feature.backgroundType === "marquee" && feature.marqueeItems) {
-                  // Background con Marquee animado
+
+                if (isMarqueeFeature(feature)) {
                   background = (
                     <Marquee
                       pauseOnHover
@@ -311,7 +319,6 @@ export default function Home() {
                               width={64}
                               height={64}
                               className="w-full h-full object-cover"
-                              unoptimized
                             />
                           </div>
                         )}
@@ -344,7 +351,6 @@ export default function Home() {
                               width={64}
                               height={64}
                               className="w-full h-full object-cover"
-                              unoptimized
                             />
                           </div>
                         )}
@@ -483,17 +489,17 @@ export default function Home() {
                     {content.cta.highlightedWords.diversión.word}
                   </Highlighter>
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                  <Button size="lg" className="text-lg px-8">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    {content.cta.buttons.primary.text}
+                <div className="flex justify-center pt-4">
+                  <Button asChild size="lg" className="text-lg px-8">
+                    <Link
+                      href={content.cta.button.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Calendar className="mr-2 h-5 w-5" />
+                      {content.cta.button.text}
+                    </Link>
                   </Button>
-                  <Link href={content.cta.buttons.secondary.href}>
-                    <Button size="lg" variant="outline" className="text-lg px-8">
-                      <Mail className="mr-2 h-5 w-5" />
-                      {content.cta.buttons.secondary.text}
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </NeonGradientCard>

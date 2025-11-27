@@ -3,105 +3,135 @@
  * Cambia aquí todos los textos sin tocar el código de los componentes
  */
 
-import { 
-  Laugh, 
-  Users, 
-  Sparkles, 
-  Music,
-} from "lucide-react"
+import { Crown, PartyPopper, Sparkles, Star } from "lucide-react"
+
+const WHATSAPP_NUMBER = "59169709494"
+const DEFAULT_WHATSAPP_MESSAGE =
+  "Hola, vi la landing de Caluma Show y quiero reservar mi evento."
+const whatsappLink = (message = DEFAULT_WHATSAPP_MESSAGE) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 
 export const content = {
   // Hero Section
   hero: {
     title: "Caluma Show",
-    subtitle: "El espectáculo de payasos más divertido y mágico para toda la familia",
+    subtitle:
+      "Paquetes completos desde 150 Bs para baby showers, te piñata y cumpleaños inolvidables",
     highlightedWords: {
-      payasos: { word: "payasos", action: "underline" as const, color: "#B7FF00" },
-      divertido: { word: "divertido", action: "highlight" as const, color: "#FF6B00" },
-      mágico: { word: "mágico", action: "highlight" as const, color: "#FF6B00" },
+      payasos: {
+        word: "Payasito Chuchin",
+        action: "underline" as const,
+        color: "#B7FF00",
+      },
+      divertido: {
+        word: "diversión total",
+        action: "underline" as const,
+        color: "#FF6B00",
+      },
+      mágico: {
+        word: "magia y alegría",
+        action: "underline" as const,
+        color: "#FF6B00",
+      },
     },
     marquee: [
-      "🤡 Diversión",
-      "✨ Magia",
-      "🎭 Entretenimiento",
-      "🎪 Espectáculo",
-      "🎈 Alegría",
-      "🎵 Música",
+      "🤡 Payasos y globoflexia",
+      "🪄 Magia y shows de títeres",
+      "🎵 Música ambiente & hora loca",
+      "🎉 Dinosaurios inflables",
+      "🫧 Cañón de burbujas",
+      "📱 WhatsApp 69709494",
     ],
     cta: {
-      primary: { text: "Reservar Entradas", href: "#" },
-      secondary: { text: "Contacto", href: "/contact" },
+      primary: {
+        text: "Reservar por WhatsApp",
+        href: whatsappLink(),
+      },
     },
   },
 
   // Stats Section
   stats: {
     items: [
-      { value: 200, suffix: "+", label: "Shows Realizados" },
-      { value: 2000, suffix: "+", label: "Personas Enteradas" },
-      { value: 5, suffix: "+", label: "Años de Experiencia" },
-      { value: 98, suffix: "%", label: "Satisfacción" },
+      { value: 500, suffix: "+", label: "Fiestas Animadas" },
+      { value: 2000, suffix: "+", label: "Familias Felices" },
+      { value: 8, suffix: "+", label: "Años Llevando Alegría" },
+      { value: 100, suffix: "%", label: "Diversión Garantizada" },
     ],
     highlight: {
       title: "Experiencia Garantizada",
-      description: "Más de {years} años llevando diversión y risas a miles de familias",
-      years: 5,
+      description:
+        "Más de 8 años llevando diversión y risas a baby showers, cumpleañitos y eventos familiares",
+      years: 8,
     },
   },
 
   // Features Section
   features: {
     title: "¿Qué Ofrecemos?",
-    description: "Un espectáculo completo lleno de diversión, magia y risas para toda la familia",
+    description:
+      "Paquetes hechos a medida para que tu celebración tenga Payasito Chuchin, música, magia y sorpresas para todos",
     highlightedWords: {
       diversión: { word: "diversión", action: "highlight" as const, color: "#FF6B00" },
       magia: { word: "magia", action: "highlight" as const, color: "#FF6B00" },
     },
     items: [
       {
-        name: "Show Interactivo",
-        description: "Actuaciones que involucran a toda la familia con juegos y participación del público.",
-        icon: Users,
+        name: "Paquete Hora Feliz · 150 Bs",
+        description:
+          "1 payasito, parlante con micrófono, juegos didácticos, rayo láser, luces LED y dinámicas tipo sumo, juegos del calamar y Wally gigante.",
+        icon: Crown,
         className: "col-span-3 lg:col-span-1",
         backgroundType: "marquee" as const,
         marqueeItems: [
-          { name: "Juegos", description: "Actividades divertidas para todos" },
-          { name: "Participación", description: "El público es parte del show" },
-          { name: "Diversión", description: "Risas garantizadas" },
+          { name: "Payasito", description: "Animación completa" },
+          { name: "Juegos", description: "Sumo, Wally, Calamar" },
+          { name: "Luces", description: "LED + rayo láser" },
         ],
         gradient: "from-blue-500/20 to-purple-500/20",
-        cta: "Ver más",
-        href: "#features",
+        cta: "Reservar 150 Bs",
+        href: whatsappLink(
+          "Hola, quiero reservar el Paquete Hora Feliz de 150 Bs desde la landing de Caluma Show."
+        ),
       },
       {
-        name: "Magia y Diversión",
-        description: "Trucos de magia que dejarán a grandes y pequeños con la boca abierta.",
-        icon: Sparkles,
+        name: "Paquete Premium Hora · 200 Bs",
+        description:
+          "Incluye todo el básico más música ambiente, cañón de burbujas, dinosaurio gigante y globoflexia para todos.",
+        icon: PartyPopper,
         className: "col-span-3 lg:col-span-2",
         backgroundType: "gradient" as const,
         gradient: "from-yellow-500/20 to-orange-500/20",
-        cta: "Ver más",
-        href: "#features",
+        cta: "Reservar 200 Bs",
+        href: whatsappLink(
+          "Hola, quiero reservar el Paquete Premium Hora de 200 Bs desde la landing de Caluma Show."
+        ),
       },
       {
-        name: "Música en Vivo",
-        description: "Canciones y bailes que harán que todos se levanten de sus asientos.",
-        icon: Music,
+        name: "Show Mediano · 4 hrs · 700 Bs",
+        description:
+          "2 payasos o pintacaritas, entrada de mariachi, máquina de humo, robot LED o máscara LED, dinosaurios inflables, cuy y mini hora loca.",
+        icon: Sparkles,
         className: "col-span-3 lg:col-span-2",
         backgroundType: "gradient" as const,
         gradient: "from-pink-500/20 to-red-500/20",
-        cta: "Ver más",
-        href: "#features",
+        cta: "Reservar 700 Bs",
+        href: whatsappLink(
+          "Hola, quiero reservar el Show Mediano de 700 Bs (4 horas) desde la landing de Caluma Show."
+        ),
       },
       {
-        name: "Risas Garantizadas",
-        description: "Chistes, situaciones cómicas y mucha diversión para todas las edades.",
-        icon: Laugh,
+        name: "Show Completo · 1300 Bs",
+        description:
+          "Desde la primera entrada hasta la última canastita: payasos, pintacaritas, amplificación, globoflexia, show de títeres, magia, robots, dinosaurios, mariachi y mucho más.",
+        icon: Star,
         className: "col-span-3 lg:col-span-1",
         backgroundType: "gradient" as const,
         gradient: "from-green-500/20 to-teal-500/20",
-        cta: "Ver más",
-        href: "#features",
+        cta: "Reservar 1300 Bs",
+        href: whatsappLink(
+          "Hola, quiero reservar el Show Completo de 1300 Bs desde la landing de Caluma Show."
+        ),
       },
     ],
   },
@@ -114,27 +144,27 @@ export const content = {
       {
         name: "Aldo Rodriguez",
         message: "¡Un espectáculo increíble! Mis hijos no dejaron de reír durante toda la función.",
-        image: "https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/528364530_30563344449980800_8116351906768367718_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=PL6kIM84ousQ7kNvwHe6RY5&_nc_oc=AdkiiMYKhAKQLNU45VkpzEvtdmLFzTVyfQZ2j_xrOvSM5-eHx-eWombEZfcgscw1kZs&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=6kSEBj1g_1snu8fGmBLxDQ&oh=00_AfjwzZyiTEGH3H37m_j3S0IAjBx0XtIrlB5gOfCkgwoHtw&oe=692DB313",
+        image: "/images/testimonials/aldo.jpg",
       },
       {
         name: "Damaris Espejo",
         message: "Perfecto para toda la familia. La interacción con el público es genial.",
-        image: "https://scontent.flpb2-1.fna.fbcdn.net/v/t39.30808-6/457624729_2463107020548272_7275347050101788780_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=BTUGrH5lfGQQ7kNvwG7ZYMp&_nc_oc=AdlCY5FgtK0nc0kj9oQQwS-m2ArSVWsVNSHWTedmrCHqFgIDp29Be03XABfrJ2UklKE&_nc_zt=23&_nc_ht=scontent.flpb2-1.fna&_nc_gid=xYhM2lF1IDrYPbr0eJDCBA&oh=00_AfgKVOxYnaABx3lCITyO0viLqwtbgO2A0LHnhSN1ePO02g&oe=692DBB99",
+        image: "/images/testimonials/dama.jpg",
       },
       {
         name: "Danilo Medina",
         message: "Los niños quedaron fascinados. Definitivamente volveremos a verlos.",
-        image: "https://scontent.flpb2-1.fna.fbcdn.net/v/t39.30808-6/563448922_825967380122360_1809967917263919618_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gQO8U71cQHsQ7kNvwHAfEdx&_nc_oc=AdmYxN4RWuos_625gq1peuI9EoANQ2RQD9qfmFI1152m8pefzywOXuWOWAPg5zAuUKI&_nc_zt=23&_nc_ht=scontent.flpb2-1.fna&_nc_gid=Za1orl7b5HkWRP9ivlmYRQ&oh=00_AfhRn-OXbBVnHfCoJoxbmED1qg_bo_cPC1wSYu2IzdMWWQ&oe=692DC600",
+        image: "/images/testimonials/dan.jpg",
       },
       {
         name: "Miguel Ángel",
         message: "Un espectáculo increíble. Los payasos son geniales. Me encantó. Gracias por la diversión.",
-        image: "https://scontent.flpb2-1.fna.fbcdn.net/v/t39.30808-6/438101032_996613175166725_5355146652716584733_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=wec8po2lzi0Q7kNvwEnJp1h&_nc_oc=AdlHGfXVktJefK_MQGH_TYDpTul3q0l8EVsa7wa53IZMOldFQIduMM3S33fC3PjZn-0&_nc_zt=23&_nc_ht=scontent.flpb2-1.fna&_nc_gid=eY4HLGejX4fzk3FI8-XINw&oh=00_Afi5NoF9bCz-KpL9w_wecML0CFgF7RzoZcds_wCR9dGY3A&oe=692DC760",
+        image: "/images/testimonials/miguel.jpg",
       },
       {
         name: "Roberto Lopez",
         message: "Estuvo muy bien. Los payasos son geniales. Lo recomiendo.",
-        image: "https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/427909748_3696141180630935_5130325083031267224_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2285d6&_nc_ohc=iFt06SQ1nbEQ7kNvwGg98bQ&_nc_oc=AdnTVZzfrmsvky1JQoBRpSpd948ZBrM1LacbjT47dwc653IwbodKhYmWYbFOhCMT3b8&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=JRkraCOVgkKD1g4ODzpitw&oh=00_AfjjHqE8JcrNkES_7kGFTmf1ipGEEAZE5SiXrggXrxvHfg&oe=692DB61A",
+        image: "/images/testimonials/roberto.jpg",
       },
     ],
   },
@@ -149,7 +179,7 @@ export const content = {
         title: "Show en La Paz",
         date: "Diciembre 2024",
         description: "Un espectáculo increíble lleno de risas y diversión para toda la familia.",
-        thumbnail: "/images/latest-shows/show-1.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-1.jpg",
         className: "md:col-span-1",
       },
       {
@@ -157,7 +187,7 @@ export const content = {
         title: "Show en El Alto",
         date: "Noviembre 2024",
         description: "Magia y entretenimiento que dejó a todos con ganas de más.",
-        thumbnail: "/images/latest-shows/show-2.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-2.jpg",
         className: "md:col-span-1",
       },
       {
@@ -165,7 +195,7 @@ export const content = {
         title: "Show Familiar",
         date: "Octubre 2024",
         description: "Risas garantizadas en esta presentación especial para toda la familia.",
-        thumbnail: "/images/latest-shows/show-3.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-3.jpg",
         className: "md:col-span-1",
       },
       {
@@ -173,7 +203,7 @@ export const content = {
         title: "Show de Cumpleaños",
         date: "Septiembre 2024",
         description: "Celebración especial con nuestros payasos favoritos.",
-        thumbnail: "/images/latest-shows/show-4.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-4.jpg",
         className: "md:col-span-1",
       },
       {
@@ -181,7 +211,7 @@ export const content = {
         title: "Show Nocturno",
         date: "Agosto 2024",
         description: "Una noche mágica llena de diversión y espectáculo.",
-        thumbnail: "/images/latest-shows/show-5.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-5.jpg",
         className: "md:col-span-1",
       },
       {
@@ -189,7 +219,7 @@ export const content = {
         title: "Show Especial",
         date: "Julio 2024",
         description: "Una presentación única que todos recordarán por mucho tiempo.",
-        thumbnail: "/images/latest-shows/show-6.jpg", // Reemplazar con tu foto local
+        thumbnail: "/images/latest-shows/show-6.jpg",
         className: "md:col-span-1",
       },
     ],
@@ -257,16 +287,19 @@ export const content = {
 
   // CTA Section
   cta: {
-    title: "¿Listo para una Experiencia Inolvidable?",
-    description: "Reserva tu lugar ahora y disfruta de un espectáculo lleno de risas, magia y diversión",
+    title: "Reserva tu paquete con Payasito Chuchin",
+    description:
+      "WhatsApp 69709494 · Baby shower, cumpleañitos y toda ocasión con globoflexia, magia, hora loca y robots LED",
     highlightedWords: {
-      risas: { word: "risas", action: "highlight" as const, color: "#B7FF00" },
-      magia: { word: "magia", action: "highlight" as const, color: "#FF6B00" },
-      diversión: { word: "diversión", action: "highlight" as const, color: "#B7FF00" },
+      risas: { word: "risas", action: "highlight" as const, color: "#B7FF005B" },
+      magia: { word: "magia", action: "highlight" as const, color: "#FF6A005E" },
+      diversión: { word: "diversión", action: "highlight" as const, color: "#B7FF005B" },
     },
-    buttons: {
-      primary: { text: "Reservar Ahora", href: "#" },
-      secondary: { text: "Contáctanos", href: "/contact" },
+    button: {
+      text: "Reservar por WhatsApp",
+      href: whatsappLink(
+        "Hola, quiero reservar mi evento con Caluma Show desde la landing."
+      ),
     },
   },
 
@@ -274,7 +307,8 @@ export const content = {
   footer: {
     brand: {
       name: "Caluma Show",
-      description: "El espectáculo de payasos más divertido y mágico para toda la familia.",
+      description:
+        "Payasito Chuchin y su equipo llevan magia, música y robots LED a cada fiesta.",
     },
     links: [
       { text: "Características", href: "#features" },
@@ -291,7 +325,7 @@ export const content = {
   // Social Media
   socialMedia: {
     whatsapp: {
-      url: "https://wa.me/59169709494",
+      url: whatsappLink(),
       label: "WhatsApp - Contacto",
     },
     tiktok: {
