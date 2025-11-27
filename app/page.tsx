@@ -95,13 +95,14 @@ export default function Home() {
               direction="up"
               offset={constants.animations.defaultOffset}
             >
-              <Marquee pauseOnHover={constants.marquee.pauseOnHover} className={`[--duration:${constants.marquee.duration}] max-w-full`}>
+              {/*<Marquee pauseOnHover={constants.marquee.pauseOnHover} className={`[--duration:${constants.marquee.duration}] max-w-full`}>
                 {content.hero.marquee.map((item, idx) => (
                   <div key={idx} className="mx-4 flex items-center gap-2 whitespace-nowrap text-muted-foreground">
                     <span className="text-sm font-medium">{item}</span>
                   </div>
                 ))}
               </Marquee>
+              */}
             </BlurFade>
             
             <BlurFade 
@@ -424,14 +425,14 @@ export default function Home() {
                 className: show.className,
                 thumbnail: show.thumbnail,
                 content: (
-                  <div className="p-4">
-                    <p className="font-normal text-base text-white">
+                  <div className="space-y-3 text-neutral-900 dark:text-white">
+                    <p className="text-sm font-medium uppercase tracking-wide text-primary/80">
                       {show.date}
                     </p>
-                    <p className="font-bold text-4xl text-white mt-4">
+                    <p className="text-3xl font-bold leading-tight sm:text-4xl">
                       {show.title}
                     </p>
-                    <p className="font-normal text-base text-white/60 mt-4">
+                    <p className="text-base text-muted-foreground">
                       {show.description}
                     </p>
                   </div>

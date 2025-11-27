@@ -1,5 +1,5 @@
 /**
- * Contenido de texto de la landing page
+ * Contenido de texto de la página web page
  * Cambia aquí todos los textos sin tocar el código de los componentes
  */
 
@@ -7,9 +7,10 @@ import { Crown, PartyPopper, Sparkles, Star } from "lucide-react"
 
 const WHATSAPP_NUMBER = "59169709494"
 const DEFAULT_WHATSAPP_MESSAGE =
-  "Hola, vi la landing de Caluma Show y quiero reservar mi evento."
+  "Hola, vi la página web de Caluma Show y quiero reservar mi evento."
 const whatsappLink = (message = DEFAULT_WHATSAPP_MESSAGE) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+const INSTAGRAM_URL = "https://www.instagram.com/calumashow"
 
 export const content = {
   // Hero Section
@@ -91,7 +92,7 @@ export const content = {
         gradient: "from-blue-500/20 to-purple-500/20",
         cta: "Reservar 150 Bs",
         href: whatsappLink(
-          "Hola, quiero reservar el Paquete Hora Feliz de 150 Bs desde la landing de Caluma Show."
+          "Hola, quiero reservar el Paquete Hora Feliz de 150 Bs desde la página web de Caluma Show."
         ),
       },
       {
@@ -104,7 +105,7 @@ export const content = {
         gradient: "from-yellow-500/20 to-orange-500/20",
         cta: "Reservar 200 Bs",
         href: whatsappLink(
-          "Hola, quiero reservar el Paquete Premium Hora de 200 Bs desde la landing de Caluma Show."
+          "Hola, quiero reservar el Paquete Premium Hora de 200 Bs desde la página web de Caluma Show."
         ),
       },
       {
@@ -117,7 +118,7 @@ export const content = {
         gradient: "from-pink-500/20 to-red-500/20",
         cta: "Reservar 700 Bs",
         href: whatsappLink(
-          "Hola, quiero reservar el Show Mediano de 700 Bs (4 horas) desde la landing de Caluma Show."
+          "Hola, quiero reservar el Show Mediano de 700 Bs (4 horas) desde la página web de Caluma Show."
         ),
       },
       {
@@ -130,7 +131,7 @@ export const content = {
         gradient: "from-green-500/20 to-teal-500/20",
         cta: "Reservar 1300 Bs",
         href: whatsappLink(
-          "Hola, quiero reservar el Show Completo de 1300 Bs desde la landing de Caluma Show."
+          "Hola, quiero reservar el Show Completo de 1300 Bs desde la página web de Caluma Show."
         ),
       },
     ],
@@ -232,9 +233,17 @@ export const content = {
     members: [
       {
         name: "Chuchin",
-        category: "Payaso Principal",
+        category: "Payasito",
         description: "El líder del grupo, conocido por su humor único y su capacidad para hacer reír a grandes y pequeños.",
         image: "/images/about-us/chuchin.jpg", 
+        social: {
+          whatsapp: whatsappLink("Hola, quiero contratar al Payasito Chuchin desde la página web de Caluma Show."),
+          instagram: INSTAGRAM_URL,
+          tiktok: {
+            handle: "@chuchin_jajeja",
+            url: "https://www.tiktok.com/@chuchin_jajeja",
+          },
+        },
         content: {
           title: "Chuchin - El Payaso Principal",
           paragraphs: [
@@ -245,9 +254,17 @@ export const content = {
       },
       {
         name: "Chupetin",
-        category: "Especialista en Magia",
+        category: "Payasito",
         description: "El experto en trucos mágicos que deja a todos con la boca abierta.",
         image: "/images/about-us/chupetin.jpg",
+        social: {
+          whatsapp: whatsappLink("Hola, quiero contratar al Payasito Chupetin desde la página web de Caluma Show."),
+          instagram: INSTAGRAM_URL,
+          tiktok: {
+            handle: "@payasito_chupetin",
+            url: "https://www.tiktok.com/@payasito_chupetin",
+          },
+        },
         content: {
           title: "Chupetin - El Mago Divertido",
           paragraphs: [
@@ -258,11 +275,19 @@ export const content = {
       },
       {
         name: "Pelotin",
-        category: "Experto en Juegos",
+        category: "Payasito",
         description: "El animador que hace que todos participen y se diviertan.",
         image: "/images/about-us/pelotin.jpg",
+        social: {
+          whatsapp: whatsappLink("Hola, quiero contratar al Payasito Pelotin desde la página web de Caluma Show."),
+          instagram: INSTAGRAM_URL,
+          tiktok: {
+            handle: "@payasito_pelotin",
+            url: "https://www.tiktok.com/@payasito_pelotin",
+          },
+        },
         content: {
-          title: "Pelotin - El Animador",
+          title: "Pelotin - El Payaso",
           paragraphs: [
             "Pelotin es el experto en crear momentos interactivos. Sus juegos y actividades involucran a todo el público, haciendo que cada persona se sienta parte del espectáculo.",
             "Con energía inagotable y creatividad sin límites, Pelotin asegura que no haya un momento aburrido durante el show.",
@@ -271,11 +296,19 @@ export const content = {
       },
       {
         name: "Frenin",
-        category: "Comediante",
+        category: "Payasito",
         description: "El especialista en chistes y situaciones cómicas que garantiza las risas.",
         image: "/images/about-us/frenin.jpg",
+        social: {
+          whatsapp: whatsappLink("Hola, quiero contratar al Payasito Frenin desde la página web de Caluma Show."),
+          instagram: INSTAGRAM_URL,
+          tiktok: {
+            handle: "@payasito_frenin",
+            url: "https://www.tiktok.com/@payasito_frenin",
+          },
+        },
         content: {
-          title: "Frenin - El Comediante",
+          title: "Frenin - El Payaso",
           paragraphs: [
             "Frenin tiene el don natural de hacer reír. Sus chistes y situaciones cómicas son apropiados para todas las edades, garantizando risas desde los más pequeños hasta los adultos.",
             "Con su timing perfecto y su carisma único, Frenin es el responsable de mantener la energía alta durante todo el espectáculo.",
@@ -298,7 +331,7 @@ export const content = {
     button: {
       text: "Reservar por WhatsApp",
       href: whatsappLink(
-        "Hola, quiero reservar mi evento con Caluma Show desde la landing."
+        "Hola, quiero reservar mi evento con Caluma Show desde la página web."
       ),
     },
   },
@@ -337,7 +370,7 @@ export const content = {
       label: "Facebook",
     },
     instagram: {
-      url: "#",
+      url: INSTAGRAM_URL,
       label: "Instagram",
     },
   },
