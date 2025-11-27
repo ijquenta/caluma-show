@@ -29,7 +29,7 @@ export const packages: PackageDetail[] = [
       "Animación ideal para cumpleaños infantiles, baby showers o te piñata con juegos didácticos, luces y dinamismo total.",
     summary:
       "Incluye 1 payasito, parlante con micrófono, juegos didácticos, rayo láser, luces LED y dinámicas tipo sumo, juegos del calamar y Wally gigante.",
-    heroImage: "/images/packages/package-1.png",
+    heroImage: "/images/packages/package-1.jpg",
     includes: [
       {
         title: "Animación",
@@ -67,7 +67,7 @@ export const packages: PackageDetail[] = [
       "Todo el show base más ambientación completa con burbujas, dinosaurio gigante y globoflexia para cada invitado.",
     summary:
       "Incluye todo el básico más música ambiente, cañón de burbujas, dinosaurio gigante y globoflexia para todos.",
-    heroImage: "/images/packages/package-2.png",
+    heroImage: "/images/packages/package-2.jpg",
     includes: [
       {
         title: "Animación Premium",
@@ -110,7 +110,7 @@ export const packages: PackageDetail[] = [
       "Dos payasos o pintacaritas, entrada de mariachi, robot LED o máscara, dinosaurios inflables y mini hora loca.",
     summary:
       "Animación completa con 2 payasos, pintacaritas, mariachi, máquina de humo, robot/máscara LED, dinosaurios inflables y la tradicional entrada de cuy.",
-    heroImage: "/images/packages/package-3.png",
+    heroImage: "/images/packages/package-3.jpg",
     includes: [
       {
         title: "Escenario",
@@ -148,7 +148,7 @@ export const packages: PackageDetail[] = [
       "Paquete estrella con 2 payasos, pintacaritas, amplificación completa, robots LED depredador, cuy doble, títeres, magia y mariachi.",
     summary:
       "Todo el equipo de Caluma Show con sonido, luces, robots, títeres, magia y animación continua hasta entregar la última canastita.",
-    heroImage: "/images/packages/package-4.png",
+    heroImage: "/images/packages/package-4.jpg",
     includes: [
       {
         title: "Escenario Premium",
@@ -190,7 +190,7 @@ export const packages: PackageDetail[] = [
       "Paquete promocional especial para festejos de despedida de escuela. Incluye payasito, música ambiente, juegos didácticos, cañón de burbujas y mucho más.",
     summary:
       "Show completo para despedidas escolares con 1 payasito, parlante, música ambiente, juegos didácticos, cañón de burbujas, 10 globos flexia de regalo, juego del calamar y Wally gigante.",
-    heroImage: "/images/packages/package-5.png",
+    heroImage: "/images/packages/package-5.jpg",
     includes: [
       {
         title: "Animación",
@@ -232,7 +232,7 @@ export const packages: PackageDetail[] = [
       "Show navideño especial con dos payasitos, Santa Claus y Grinch, juegos navideños, parlante, pistola de burbujas, dinosaurio inflable y chocolate caliente.",
     summary:
       "Espectáculo navideño completo con 2 payasitos, personajes de Santa y Grinch, juegos temáticos navideños, parlante, pistola de burbujas, dinosaurio inflable y chocolate caliente para todos.",
-    heroImage: "/images/packages/package-6.png",
+    heroImage: "/images/packages/package-6.jpg",
     includes: [
       {
         title: "Personajes Navideños",
