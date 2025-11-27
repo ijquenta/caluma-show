@@ -238,6 +238,26 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Optimizaciones de rendimiento para animaciones fluidas */
+  [data-motion] {
+    will-change: transform, opacity;
+  }
+  
+  /* Optimizar scroll */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* GPU acceleration para elementos animados */
+  .animate-blur-fade,
+  [class*="motion-"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 
 ::view-transition-old(root), ::view-transition-new(root) {

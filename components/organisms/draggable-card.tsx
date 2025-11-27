@@ -56,7 +56,7 @@ export function DraggableCard() {
   return (
     <DraggableCardContainer className="relative w-full">
       <div className="flex min-h-[400px] sm:min-h-[460px] md:min-h-[540px] w-full items-center justify-center overflow-visible px-2">
-        <div className="relative h-[380px] sm:h-[460px] md:h-[520px] w-full max-w-5xl scale-[0.75] sm:scale-90 md:scale-100 origin-center transition-transform duration-300">
+        <div className="relative h-[380px] sm:h-[460px] md:h-[520px] w-full max-w-5xl scale-[0.75] sm:scale-90 md:scale-100 origin-center transition-transform duration-300 will-change-transform">
           {items.map((item, idx) => (
             <DraggableCardBody key={idx} className={`absolute ${item.className}`}>
               <Image
@@ -66,6 +66,7 @@ export function DraggableCard() {
                 height={320}
                 sizes="(max-width: 640px) 70vw, (max-width: 1024px) 45vw, 320px"
                 priority={idx < 2}
+                loading={idx < 2 ? "eager" : "lazy"}
                 className="pointer-events-none relative z-10 h-56 w-56 sm:h-64 sm:w-64 md:h-80 md:w-80 rounded-[32px] object-cover"
               />
               <h3 className="mt-3 text-center text-xl font-semibold text-neutral-800 dark:text-neutral-200 sm:text-2xl">

@@ -11,14 +11,19 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({ className = "fixed top-4 right-4 z-50" }: ThemeToggleProps) {
   useEffect(() => {
-    // Inicializar el tema desde localStorage o preferencia del sistema
+    // Inicializar el tema desde localStorage
+    // Solo usar dark si está explícitamente guardado como 'dark'
+    // Si no hay tema guardado, siempre iniciar en modo claro
     const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
     
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    if (savedTheme === "dark") {
       document.documentElement.classList.add("dark")
     } else {
       document.documentElement.classList.remove("dark")
+      // Asegurar que si no hay tema guardado, se guarde como 'light'
+      if (!savedTheme) {
+        localStorage.setItem("theme", "light")
+      }
     }
   }, [])
 

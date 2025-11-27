@@ -22,13 +22,13 @@ export const constants = {
 
   // Configuración de animaciones BlurFade
   animations: {
-    defaultDuration: 0.8,
+    defaultDuration: 0.6, // Reducido de 0.8 a 0.6 para más fluidez
     defaultOffset: 20,
     delays: {
       immediate: 0,
-      short: 0.15,
-      medium: 0.2,
-      long: 0.4,
+      short: 0.1, // Reducido para animaciones más rápidas
+      medium: 0.15,
+      long: 0.3,
     },
   },
 
