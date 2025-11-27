@@ -1,7 +1,7 @@
-import { GridPattern } from "@/components/ui/grid-pattern"
-import { BlurFade } from "@/components/ui/blur-fade"
-import { ContactForm } from "@/components/contact-form"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { GridPattern } from "@/components/atoms/ui/grid-pattern"
+import { BlurFade } from "@/components/atoms"
+import { ContactForm } from "@/components/organisms/contact-form"
+import { ThemeToggle } from "@/components/atoms"
 
 export default function ContactPage() {
   return (

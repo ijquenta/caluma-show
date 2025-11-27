@@ -3,12 +3,12 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { ArrowLeft, CheckCircle2, Sparkles } from "lucide-react"
-import { WhatsAppIcon } from "@/components/social-dock"
+import { WhatsAppIcon } from "@/components/organisms/social-dock"
 
 import { packages } from "@/lib/config/packages"
-import { Button } from "@/components/ui/button"
-import { BlurFade } from "@/components/ui/blur-fade"
-import { NeonGradientCard } from "@/components/ui/neon-gradient-card"
+import { Button } from "@/components/atoms"
+import { BlurFade } from "@/components/atoms"
+import { NeonGradientCard } from "@/components/atoms"
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>
@@ -110,27 +110,32 @@ export default async function PackagePage({ params }: PackagePageProps) {
         </BlurFade>
 
         <BlurFade inView delay={0.2}>
-          <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-lg backdrop-blur sm:rounded-3xl sm:p-6">
-            <h2 className="text-xl font-bold sm:text-2xl">¿Qué incluye?</h2>
-            <p className="mt-2 text-sm text-muted-foreground sm:mt-0 sm:text-base">
-              Todo lo necesario para que la fiesta tenga ritmo, luces y
-              diversión sin preocuparte por nada más.
-            </p>
-            <div className="mt-4 grid gap-4 sm:mt-6 sm:gap-6 md:grid-cols-2">
+          <div className="w-full rounded-2xl border border-border/50 bg-card/80 p-4 shadow-lg backdrop-blur sm:rounded-3xl sm:p-6">
+            <div className="mb-5 sm:mb-8">
+              <h2 className="text-xl font-bold sm:text-2xl mb-2">¿Qué incluye?</h2>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                Todo lo necesario para que la fiesta tenga ritmo, luces y
+                diversión sin preocuparte por nada más.
+              </p>
+            </div>
+            <div className="space-y-3 sm:space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
               {pkg.includes.map((group) => (
                 <div
                   key={group.title}
-                  className="rounded-xl border border-border/40 bg-background/80 p-4 sm:rounded-2xl sm:p-5"
+                  className="rounded-lg border border-border/40 bg-background/60 p-4 sm:p-5 hover:border-primary/30 hover:bg-background/90 transition-all"
                 >
-                  <h3 className="flex items-center gap-2 text-base font-semibold sm:text-lg">
-                    <CheckCircle2 className="h-4 w-4 text-primary sm:h-5 sm:w-5" />
-                    {group.title}
+                  <h3 className="flex items-center gap-2 text-sm font-semibold sm:text-base mb-3 sm:mb-4 text-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 sm:h-5 sm:w-5" />
+                    <span className="break-words">{group.title}</span>
                   </h3>
-                  <ul className="mt-3 space-y-2 text-muted-foreground sm:mt-4">
-                    {group.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs sm:text-sm">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/70 sm:mt-1 sm:h-2 sm:w-2" />
-                        {item}
+                  <ul className="space-y-2 sm:space-y-2.5">
+                    {group.items.map((item, idx) => (
+                      <li 
+                        key={`${group.title}-${idx}`} 
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-muted-foreground"
+                      >
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/70 flex-shrink-0 sm:mt-1.5 sm:h-2 sm:w-2" />
+                        <span className="flex-1 break-words">{item}</span>
                       </li>
                     ))}
                   </ul>

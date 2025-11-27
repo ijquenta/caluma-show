@@ -90,6 +90,19 @@ export const content = {
         href: "/paquetes/despedida-escuela",
         isPromo: true,
       },
+      {
+        name: "Show navidadeño · 650 Bs ",
+        description:
+          "Promoción especial: papanoel o grinch, parlante, música ambiente, juegos didácticos, cañón de burbujas.",
+        icon: PartyPopper,
+        className: "col-span-3 lg:col-span-2",
+        backgroundType: "image" as const,
+        image: "/images/packages/package-6.png",
+        gradient: "from-red-500/20 to-pink-500/20",
+        cta: "Ver detalles",
+        href: "/paquetes/show-navidad",
+        isPromo: true,
+      },
       /*{
         name: "Paquete Hora Feliz · 150 Bs",
         description:

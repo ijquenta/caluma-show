@@ -223,5 +223,64 @@ export const packages: PackageDetail[] = [
       "Hola, quiero recibir detalles del Show para Despedida de Escuela de 250 Bs (promoción) desde la página web."
     ),
   },
+  {
+    slug: "show-navidad",
+    name: "Paquete Navideño ",
+    priceLabel: "650 Bs · 3 horas",
+    duration: "3 horas",
+    description:
+      "Show navideño especial con dos payasitos, Santa Claus y Grinch, juegos navideños, parlante, pistola de burbujas, dinosaurio inflable y chocolate caliente.",
+    summary:
+      "Espectáculo navideño completo con 2 payasitos, personajes de Santa y Grinch, juegos temáticos navideños, parlante, pistola de burbujas, dinosaurio inflable y chocolate caliente para todos.",
+    heroImage: "/images/packages/package-6.png",
+    includes: [
+      {
+        title: "Personajes Navideños",
+        items: [
+          "2 Payasitos anfitriones",
+          "Santa Claus",
+          "Grinch",
+        ],
+      },
+      {
+        title: "Animación y Juegos",
+        items: [
+          "Juegos navideños temáticos",
+          "Dinámicas interactivas",
+          "Actividades para toda la familia",
+        ],
+      },
+      {
+        title: "Equipamiento y Ambiente",
+        items: [
+          "Parlante con micrófono",
+          "Pistola de burbujas",
+          "Dinosaurio inflable",
+          "Luces LED navideñas",
+        ],
+      },
+      {
+        title: "Extras Especiales",
+        items: [
+          "Chocolate caliente para todos",
+          "Ambientación navideña",
+        ],
+      },
+    ],
+    highlights: [
+      "Show temático navideño completo",
+      "Personajes clásicos de Navidad",
+      "Ideal para celebraciones familiares",
+      "Perfecto para eventos de 3 horas",
+    ],
+    extras: [
+      "Globoflexia navideña",
+      "Show de títeres navideños",
+      "Decoración adicional",
+    ],
+    whatsappHref: whatsappLink(
+      "Hola, quiero reservar el Paquete Navideño de 650 Bs (3 horas) desde la página web."
+    ),
+  },
 ]
 
