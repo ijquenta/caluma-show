@@ -22,20 +22,20 @@ export function DraggableCard() {
         "top-28 left-[4%] rotate-[-5deg] md:top-40 md:left-[25%] md:rotate-[-7deg]",
     },
     {
-      title: "Payasito Frenin",
+      title: "Payasitos",
       image: "/images/draggable-card/card-3.jpg",
       className:
         "top-6 left-[46%] rotate-[6deg] md:top-5 md:left-[40%] md:rotate-[8deg]",
     },
     {
-      title: "Depretador Led",
+      title: "Robot Depredador LED",
       image: "/images/draggable-card/card-4.jpg",
       className:
         "top-40 left-[52%] rotate-[8deg] md:top-32 md:left-[55%] md:rotate-[10deg]",
     },
     {
-      title: "Show Robot LED",
-      image: "/images/draggable-card/card-5.jpg",
+      title: "Grinch",
+      image: "/images/draggable-card/card-14.jpg",
       className:
         "top-24 left-[62%] rotate-[4deg] md:top-20 md:left-[65%] md:rotate-[2deg]",
     },
